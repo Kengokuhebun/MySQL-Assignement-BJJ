@@ -17,10 +17,17 @@ CREATE TABLE fighter (
         FOREIGN KEY (GymID) REFERENCES gym (GymID)
 ) ENGINE = InnoDB;
 
+CREATE TABLE `match` (
+    MatchID   INT  NOT NULL AUTO_INCREMENT,
+    EventDate DATE NOT NULL,
+    TypeID    INT  NOT NULL,
+    PRIMARY KEY (MatchID),
+    CONSTRAINT fk_match_victorytype
+        FOREIGN KEY (TypeID) REFERENCES victorytype (TypeID)
+) ENGINE = InnoDB;
+
 CREATE TABLE victorytype (
     TypeID     INT         NOT NULL AUTO_INCREMENT,
     MethodName VARCHAR(50) NOT NULL,
     PRIMARY KEY (TypeID)
 ) ENGINE = InnoDB;
-
-
