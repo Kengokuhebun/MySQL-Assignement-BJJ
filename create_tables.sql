@@ -31,3 +31,15 @@ CREATE TABLE victorytype (
     MethodName VARCHAR(50) NOT NULL,
     PRIMARY KEY (TypeID)
 ) ENGINE = InnoDB;
+
+CREATE TABLE fightermatchperformance (
+    FighterID    INT         NOT NULL,
+    MatchID      INT         NOT NULL,
+    PointsScored TINYINT     UNSIGNED NOT NULL DEFAULT 0,
+    Result       VARCHAR(4)  NOT NULL,
+    PRIMARY KEY (FighterID, MatchID),
+    CONSTRAINT fk_perf_fighter
+        FOREIGN KEY (FighterID) REFERENCES fighter (FighterID),
+    CONSTRAINT fk_perf_match
+        FOREIGN KEY (MatchID) REFERENCES `match` (MatchID)
+) ENGINE = InnoDB;
